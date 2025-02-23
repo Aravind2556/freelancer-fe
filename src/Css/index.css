@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  .animate-fadeIn {
+    animation: fadeIn 2s ease-out;
+  }
+  
+  .glassy-effect {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+
+
+  @keyframes btnslide {
+    0% {
+      background: linear-gradient(90deg, #6d3edf 0%, #08b6cf 100%);
+    }
+    50% {
+      background: linear-gradient(90deg, #6d3edf 50%, #08b6cf 100%);
+    }
+    100% {
+      background: #6d3edf;
+    }
+  }
+  
+  button {
+    background: linear-gradient(90deg, #6d3edf 0%, #08b6cf 100%);
+    background-repeat: no-repeat;
+    transition: all 0.3s ease-in-out; /* Smooth transition for hover effect */
+  }
+  
+  button:hover {
+    animation: btnslide 0.3s ease-in-out forwards;
+  }
+
+  thead{
+    background: linear-gradient(90deg, #6d3edf 0%, #08b6cf 100%) !important;
+
+  }
+
+  button i {
+    background-color: white !important;
+    border-radius: 50% !important;
+  }
+
+
+
+  
+
+
+
+  
+
+
+
+
