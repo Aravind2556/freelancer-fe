@@ -340,7 +340,7 @@ export const UserAccount = () => {
     onChange={(e)=>handleDataUpdation(e)}
     className="border px-3 py-2 rounded w-full" readOnly
   />
-   <label className="block font-semibold mb-2">CategoryId</label>
+   <label className="block font-semibold mb-2">Name</label>
   <input
     type="text"
     name="Name"
@@ -349,7 +349,7 @@ export const UserAccount = () => {
     className="border px-3 py-2 rounded w-full" 
   />
 
-  <label className="block font-semibold mb-2">CreaterId</label>
+  <label className="block font-semibold mb-2">Role</label>
   <input
     type="text"
     
@@ -359,7 +359,7 @@ export const UserAccount = () => {
     className="border px-3 py-2 rounded w-full" readOnly
   />
 
-  <label  className="block font-semibold mb-2">Interests</label>
+  <label  className="block font-semibold mb-2">Email</label>
   <input
     type="email"
     name="Email"
@@ -368,7 +368,7 @@ export const UserAccount = () => {
     className="border px-3 py-2 rounded w-full"
   />
 
-  <label  className="block font-semibold mb-2">Price</label>
+  <label  className="block font-semibold mb-2">Password</label>
   <input
     type="text"
     name="Password"
@@ -377,7 +377,7 @@ export const UserAccount = () => {
     className="border px-3 py-2 rounded w-full"
   />
 
-   <label  className="block font-semibold mb-2">Status</label>
+   <label  className="block font-semibold mb-2">Contact</label>
   <input
     type="text"
     name="Contact"
