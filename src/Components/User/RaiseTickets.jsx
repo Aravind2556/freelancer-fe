@@ -34,7 +34,7 @@ export const RaiseTickets = () => {
         if (data.success) {
           alert(data.message);
           setFormData({ issue: "" });
-          window.location.reload()
+        
         } else {
           alert(data.message);
         }
