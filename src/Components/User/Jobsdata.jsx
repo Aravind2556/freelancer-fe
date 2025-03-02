@@ -102,7 +102,7 @@ export const Jobsdata = () => {
                                         {/* Price */}
                                         <p className="text-lg font-semibold text-gray-100">
                                             Price:{" "}
-                                            <span className="text-green-400">${data.Price}</span>
+                                            <span className="text-green-400">&#8377;{data.Price}</span>
                                         </p>
 
                                         {/* Status */}

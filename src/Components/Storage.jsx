@@ -208,7 +208,7 @@ export const Storage = () => {
         <Route path="/category/:id" element={<CategoryDetails />} />
         <Route path="/tickets" element={  currentUser?.Role === "Company" ? <Tickets /> : currentUser?.Role === "Freelancer" ?  <Tickets /> : <Navigate to="/" /> } />
         <Route path="/admintickets" element={currentUser?.Role === "Admin" ? <AdminTickets />  : <Navigate to="/" />} />
-        <Route path="/interst" element={!currentUser ? <Navigate to="/login" /> : currentUser?.Role === "Admin" || currentUser?.Role === "Freelancer" ? <Navigate to="/" /> : <Interst />} />
+        <Route path="/interst" element={!currentUser ? <Navigate to="/login" /> : currentUser?.Role === "Admin" || currentUser?.Role === "Freelancer" ?  <Navigate to="/" /> : <Interst />} />
         <Route path="/raiseticked" element={!currentUser ? <Navigate to="/login" /> : currentUser?.Role === "Freelancer" ? <RaiseTickets />  : <Navigate to="/" />} />
         <Route path="/Account Register" element={<Signin />} />
         <Route path="*" element={<Notfound />} />
