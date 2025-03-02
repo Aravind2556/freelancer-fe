@@ -17,18 +17,21 @@ export const Jobsdata = () => {
     }, [Jobs]);
 
     const handleBookmark = (providerid) => {
-        fetch(`${apiurl}/update-data`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            credentials: "include",
-            body: JSON.stringify({ providerid }),
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                alert(data.message);
-                if (data.success) window.location.reload();
+        if(window.confirm('Are you sure you want to apply this job')){
+            fetch(`${apiurl}/update-data`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
+                body: JSON.stringify({ providerid }),
             })
-            .catch(() => alert("Failed to bookmark the job. Please try again."));
+                .then((res) => res.json())
+                .then((data) => {
+                    alert(data.message);
+                    if (data.success) window.location.reload();
+                })
+                .catch(() => alert("Failed to bookmark the job. Please try again."));
+        }
+
     };
 
     const handleraise = () => navigate("/raiseticked");

@@ -54,34 +54,30 @@ export const Createjobprovider = () => {
 
   // Save data (placeholder function for API call)
   function handlecreate() {
-    if (Title !== '' && Description !== '' && Price !== '' && selectedJob !== '') {
-      console.log("create jobs", Title, Description, Price, selectedJob)
+    if(window.confirm('Are you sure you want to Create job for your company')){
       fetch(`${apiurl}/Create_jobs`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        credentials: 'include',
-        body: JSON.stringify({ Title, Description, Price, selectedJob })
-      })
-        .then(res => res.json())
-        .then(data => {
-          if (data.success === true) {
-            alert(data.message)
-            window.location.reload()
-          }
-          else {
-            alert(data.message)
-          }
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          credentials: 'include',
+          body: JSON.stringify({ Title, Description, Price, selectedJob })
         })
-        .catch(err => {
-          alert("error", err)
-        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.success === true) {
+              alert(data.message)
+              window.location.reload()
+            }
+            else {
+              alert(data.message)
+            }
+          })
+          .catch(err => {
+            alert("error", err)
+          })
+        }
 
-    }
-    else {
-      alert("data null last else")
-    }
   }
 
 
@@ -89,7 +85,7 @@ export const Createjobprovider = () => {
     <div>
       <div className="p-6 bg-gray-100 min-h-screen ">
         <div className="flex justify-center relative top-28">
-          <h1 className="text-2xl font-bold text-gray-800 mb-8">Job Provider</h1>
+          <h1 className="text-2xl font-bold text-gray-800 mb-8">Company</h1>
         </div>
 
         <div className="flex flex-wrap gap-5 justify-center relative top-36">

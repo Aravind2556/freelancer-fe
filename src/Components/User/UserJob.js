@@ -17,7 +17,7 @@ export const UserJob = () => {
 
   return (
     
-    <div className="flex justify-center items-center bg-gray-100 p-4">
+    <div className="flex justify-center min-h-screen items-center bg-gray-100 p-4">
       <div className="relative top-10 grid gap-10 w-full max-w-4xl">
         {/* Cards Section */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 p-4">

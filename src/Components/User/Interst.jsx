@@ -15,7 +15,7 @@ const [show, setshow] = useState(false)
  
 
 const handleAssign = (free, job) => {
-   
+  if(window.confirm('Are you sure you want to assign this freelance ')){
     fetch(`${apiurl}/assigning-to-freelancer`, {
       method: 'POST',
       headers: {
@@ -35,7 +35,7 @@ const handleAssign = (free, job) => {
         }
       })
       .catch((err) => console.log('Login error', err));
-
+  }
   }
 
   const handleshow = (intrestdata) => {

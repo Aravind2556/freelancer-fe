@@ -43,31 +43,34 @@ export const Adminjobs = () => {
   };
 
   const handleOpenUpadtemodel = () => {
-    setshowupadte(false)
-    if (upadatedata !== '') {
-      fetch(`${apiurl}/update-job`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body: JSON.stringify({ upadatedata }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.success === true) {
-
-            alert(data.message)
-          } else {
-            alert(data.message);
-          }
+    if(window.confirm('Are you sure you want to upadate this job')){
+      setshowupadte(false)
+      if (upadatedata !== '') {
+        fetch(`${apiurl}/update-job`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+          body: JSON.stringify({ upadatedata }),
         })
-        .catch((err) => console.log('Login error', err));
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.success === true) {
+  
+              alert(data.message)
+            } else {
+              alert(data.message);
+            }
+          })
+          .catch((err) => console.log('Login error', err));
+  
+      }
+      else {
+        console.log("Trouble data")
+      }
+    }
 
-    }
-    else {
-      console.log("Trouble data")
-    }
   }
 
 
@@ -173,6 +176,7 @@ export const Adminjobs = () => {
                 <th className="text-center text-sm font-semibold hidden md:table-cell ">Sl. No.</th>
                 <th className="text-center text-sm font-semibold  ">Title</th>
                 <th className="text-centertext-sm font-semibold  hidden md:table-cell">Date</th>
+                <th className="text-centertext-sm font-semibold  hidden md:table-cell">Time</th>
                 <th className="text-center text-sm font-semibold  hidden md:table-cell">Price</th>
                 <th className="text-center text-sm font-semibold ">Status</th>
                 <th className="text-center text-sm font-semibold ">Action</th>
@@ -183,11 +187,13 @@ export const Adminjobs = () => {
                 <tr key={index} className="border-b">
                   <td className="px-6 py-3 text-sm text-gray-700 hidden md:table-cell">{index + 1}</td>
                   <td className="px-6 py-3 text-sm text-gray-700">{data.Title}</td>
-                  <td className="px-6 py-3 text-sm text-gray-700 hidden md:table-cell">{data.createdAt}</td>
-                  <td className="px-6 py-3 text-sm text-gray-700 hidden md:table-cell">${data.Price}</td>
+                  <td className="px-6 py-3 text-sm text-gray-700 hidden md:table-cell">{data.createdAt.split("T")[0]}</td>
+                  <td className="px-6 py-3 text-sm text-gray-700 hidden md:table-cell">{data.createdAt.split("T")[1].split("Z")[0]}</td>
+                  <td className="px-6 py-3 text-sm text-gray-700 hidden md:table-cell">&#8377;{data.Price}</td>
                   <td className="px-6 py-3 text-sm text-gray-700">
                     <span className={`font-semibold ${data.Status === 'Available' ? 'text-green-500' : 'text-red-500'}`}>{data.Status}</span>
                   </td>
+
                   <td className="flex gap-3 px-6 py-3">
                     <p onClick={() => handleshowdata(data.Id)} title="View" className="text-blue-600 hover:text-blue-800">
                       <i className="bi bi-eye text-lg"></i>

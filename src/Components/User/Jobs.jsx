@@ -27,30 +27,33 @@ export const Jobs = () => {
 
 
   const handleUpdatedata = (data) => {
-    console.log("Upadte data", data)
-    setshowupadte(true)
-    if (data) {
-      fetch(`${apiurl}/fetch-update`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body: JSON.stringify({ data }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.success === true) {
-
-            setupadtedata(data.data)
-          } else {
-            alert(data.message);
-          }
+    if(window.confirm("Are you sure you want to Update this job")){
+      setshowupadte(true)
+      if (data) {
+        fetch(`${apiurl}/fetch-update`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+          body: JSON.stringify({ data }),
         })
-        .catch((err) => console.log('Login error', err));
-    } else {
-      console.log('Please enter valid login details');
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.success === true) {
+  
+              setupadtedata(data.data)
+            } else {
+              alert(data.message);
+            }
+          })
+          .catch((err) => console.log('Login error', err));
+      } else {
+        console.log('Please enter valid login details');
+      }
     }
+   
+
   };
 
   const handleOpenUpadtemodel = () => {
@@ -249,6 +252,7 @@ export const Jobs = () => {
                   <th className="px-6 py-3 text-sm font-semibold text-left ">Sl. No.</th>
                   <th className="px-6 py-3 text-sm font-semibold text-left hidden md:table-cell">Title</th>
                   <th className="px-6 py-3 text-sm font-semibold text-left hidden md:table-cell ">Date</th>
+                  <th className="px-6 py-3 text-sm font-semibold text-left hidden md:table-cell ">Time</th>
                   <th className="px-6 py-3 text-sm font-semibold text-left hidden md:table-cell">Price</th>
                   <th className="px-6 py-3 text-sm font-semibold text-left">Status</th>
                   <th className="px-6 py-3 text-sm font-semibold text-left">Action</th>
@@ -259,8 +263,9 @@ export const Jobs = () => {
                   <tr key={index} className={`border-b ${index % 2 === 0 ? "bg-gray-100" : "bg-white"}`}>
                     <td className="px-6 py-3 text-sm text-gray-700">{index + 1}</td>
                     <td className="px-6 py-3 text-sm text-gray-700 hidden md:table-cell">{data.Title}</td>
-                    <td className="px-6 py-3 text-sm text-gray-700 hidden md:table-cell">{data.createdAt}</td>
-                    <td className="px-6 py-3 text-sm text-gray-700 hidden md:table-cell">${data.Price}</td>
+                    <td className="px-6 py-3 text-sm text-gray-700 hidden md:table-cell"> {data.createdAt.split("T")[0]}</td>
+                    <td className="px-6 py-3 text-sm text-gray-700 hidden md:table-cell">{data.createdAt.split("T")[1].split("Z")[0]}</td>
+                    <td className="px-6 py-3 text-sm text-gray-700 hidden md:table-cell">{data.Price}</td>
                     <td className="px-6 py-3 text-sm text-gray-700">
                       <span className={`font-semibold ${data.Status === 'Available' ? 'text-green-500' : 'text-red-500'}`}>{data.Status}</span>
                     </td>
@@ -315,7 +320,7 @@ export const Jobs = () => {
                         onClick={() => handleComplete(gettingadata.Id, rating,gettingadata.AssignedTo)}
                         className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300"
                       >
-                        Complete
+                        Complete Job
                       </button>
                     </form>
                   </li>

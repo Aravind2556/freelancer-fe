@@ -16,38 +16,37 @@ export const RaiseTickets = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!formData.issue) {
-      alert("Please fill in all the required fields.");
-      return;
-    }
-
-    setLoading(true);
-    try {
-      const response = await fetch(`${apiurl}/tickets-input`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: 'include',
-        body: JSON.stringify({ formData }),
-      });
-
-      const data = await response.json();
-      if (data.success) {
-        alert(data.message);
-        setFormData({ issue: "" });
-        window.location.reload()
-      } else {
-        alert(data.message);
+    if(window.confirm('Are you sure you want Raise a complaint')){
+      e.preventDefault();
+    
+      setLoading(true);
+      try {
+        const response = await fetch(`${apiurl}/tickets-input`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: 'include',
+          body: JSON.stringify({ formData }),
+        });
+  
+        const data = await response.json();
+        if (data.success) {
+          alert(data.message);
+          setFormData({ issue: "" });
+          window.location.reload()
+        } else {
+          alert(data.message);
+        }
+      } catch (error) {
+        console.error("Error submitting the ticket:", error);
+        alert("An error occurred. Please try again.");
+      } finally {
+        setLoading(false);
       }
-    } catch (error) {
-      console.error("Error submitting the ticket:", error);
-      alert("An error occurred. Please try again.");
-    } finally {
-      setLoading(false);
     }
+
+
   };
 
   return (

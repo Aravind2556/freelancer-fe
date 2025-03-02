@@ -13,30 +13,33 @@ export const Categories = () => {
   const handleCloseLoginModal = () => setIsModalOpen(false);
 
   function handleSave() {
-    if (jobname !== '' && jobdescription !== '') {
-      fetch(`${apiurl}/categories`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body: JSON.stringify({ jobname, jobdescription }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.success === true) {
-            window.location.reload()
-            alert('Data saved successfully!');
-          } else {
-            alert('Something went wrong!');
-          }
+    if(window.confirm('Are you sure you want to Create categories')){
+      if (jobname !== '' && jobdescription !== '') {
+        fetch(`${apiurl}/categories`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+          body: JSON.stringify({ jobname, jobdescription }),
         })
-        .catch((err) => {
-          console.log('Error:', err);
-        });
-    } else {
-      console.log('Fields are empty');
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.success === true) {
+              window.location.reload()
+              alert('Data saved successfully!');
+            } else {
+              alert('Something went wrong!');
+            }
+          })
+          .catch((err) => {
+            console.log('Error:', err);
+          });
+      } else {
+        console.log('Fields are empty');
+      }
     }
+
   }
 
   useEffect(()=>{
@@ -62,27 +65,30 @@ export const Categories = () => {
   },[])
 
   const handleDelete = (id) =>{
-
-    fetch(`${apiurl}/categories-delete`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include',
-      body: JSON.stringify({ id }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success === true) {
-          window.location.reload()
-          alert(data.message);
-        } else {
-          alert(data.message);
-        }
+    if(window.confirm('Are you sure! you delete this job categories ')){
+      fetch(`${apiurl}/categories-delete`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify({ id }),
       })
-      .catch((err) => {
-        console.log('Error:', err);
-      });
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.success === true) {
+            window.location.reload()
+            alert(data.message);
+          } else {
+            alert(data.message);
+          }
+        })
+        .catch((err) => {
+          console.log('Error:', err);
+        });
+    }
+
+
 
 
 
